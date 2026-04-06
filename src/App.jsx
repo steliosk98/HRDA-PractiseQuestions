@@ -267,14 +267,13 @@ const FlashcardStudy = ({ cards, currentIndex, revealAnswer, onAdvance, onRestar
       <div className="mt-2">
         <div className="relative [perspective:1400px]">
           <div
-            className={`relative w-full rounded-[2rem] transition-transform duration-700 [transform-style:preserve-3d] ${
-              revealAnswer ? '[transform:rotateY(180deg)]' : ''
-            }`}
-            style={{ minHeight: revealAnswer ? 'auto' : 'auto' }}
+            className="relative w-full rounded-[2rem]"
           >
             <div
-              className={`rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-xl shadow-slate-200/60 transition-opacity duration-300 sm:p-8 ${
-                revealAnswer ? 'pointer-events-none invisible absolute inset-0 opacity-0' : 'relative opacity-100 [backface-visibility:hidden]'
+              className={`rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-xl shadow-slate-200/60 transition-all duration-500 sm:p-8 ${
+                revealAnswer
+                  ? 'pointer-events-none invisible absolute inset-0 opacity-0 [transform:rotateY(-180deg)]'
+                  : 'relative opacity-100 [transform:rotateY(0deg)]'
               }`}
             >
               <div className="mb-3 text-sm uppercase tracking-[0.2em] text-slate-500">Ερώτηση</div>
@@ -284,8 +283,10 @@ const FlashcardStudy = ({ cards, currentIndex, revealAnswer, onAdvance, onRestar
             </div>
 
             <div
-              className={`rounded-[2rem] border border-amber-200 bg-amber-50 p-6 shadow-xl shadow-amber-200/40 transition-opacity duration-300 sm:p-8 ${
-                revealAnswer ? 'relative opacity-100' : 'pointer-events-none invisible absolute inset-0 opacity-0'
+              className={`rounded-[2rem] border border-amber-200 bg-amber-50 p-6 shadow-xl shadow-amber-200/40 transition-all duration-500 sm:p-8 ${
+                revealAnswer
+                  ? 'relative opacity-100 [transform:rotateY(0deg)]'
+                  : 'pointer-events-none invisible absolute inset-0 opacity-0 [transform:rotateY(180deg)]'
               }`}
             >
               <div className="mb-3 text-sm uppercase tracking-[0.2em] text-amber-700">Απάντηση</div>
