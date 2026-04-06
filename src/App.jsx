@@ -15,11 +15,17 @@ const QuestionSelector = ({ value, onChange, onStart }) => {
   const tfCount = Math.floor(value / 2)
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-lg">
-      <h1 className="text-3xl font-semibold mb-4">Κουίζ ΑνΑΔ - Εκπαιδευτής Δια Βίου Μάθησης</h1>
-      <p className="mb-6 text-slate-600">Επιλέξτε πόσες ερωτήσεις θέλετε να απαντήσετε. Η εφαρμογή θα χωρίσει αυτόματα ανάμεσα σε πολλαπλής επιλογής και σωστό/λάθος.</p>
-      <div className="mb-4">
-        <label className="block text-slate-700 mb-2">Αριθμός ερωτήσεων: {value}</label>
+    <div className="max-w-3xl mx-auto p-8 bg-white/95 backdrop-blur-xl rounded-[2rem] border border-slate-200 shadow-2xl shadow-slate-200/40">
+      <div className="mb-6">
+        <div className="inline-flex items-center gap-2 rounded-full bg-sky-100 text-sky-700 px-4 py-2 text-sm font-semibold mb-4">Νέο κουίζ</div>
+        <h1 className="text-4xl font-semibold tracking-tight text-slate-900 mb-3">Κουίζ ΑνΑΔ - Εκπαιδευτής Δια Βίου Μάθησης</h1>
+        <p className="max-w-2xl text-slate-600 leading-7">Επιλέξτε πόσες ερωτήσεις θέλετε να απαντήσετε. Η εφαρμογή θα δημιουργήσει αυτόματα έναν ισορροπημένο διαγωνισμό με μισές ερωτήσεις πολλαπλής επιλογής και μισές σωστού/λάθους.</p>
+      </div>
+      <div className="mb-6 rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-inner shadow-slate-100/80">
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-slate-700 font-medium">Ερωτήσεις</span>
+          <span className="text-slate-900 text-lg font-semibold">{value}</span>
+        </div>
         <input
           type="range"
           min="2"
@@ -27,22 +33,22 @@ const QuestionSelector = ({ value, onChange, onStart }) => {
           step="2"
           value={value}
           onChange={(event) => onChange(Number(event.target.value))}
-          className="w-full"
+          className="w-full accent-slate-900"
         />
       </div>
-      <div className="grid grid-cols-2 gap-4 text-center mb-6">
-        <div className="p-4 rounded-2xl bg-slate-100">
-          <div className="text-slate-500">MCQ</div>
-          <div className="text-2xl font-bold">{mcqCount}</div>
+      <div className="grid grid-cols-2 gap-4 text-center mb-7">
+        <div className="p-5 rounded-[1.75rem] bg-slate-950/95 text-white shadow-lg shadow-slate-950/10">
+          <div className="text-sm uppercase tracking-[0.2em] text-slate-300 mb-2">Πολλαπλής Επιλογής</div>
+          <div className="text-4xl font-bold">{mcqCount}</div>
         </div>
-        <div className="p-4 rounded-2xl bg-slate-100">
-          <div className="text-slate-500">Σωστό/Λάθος</div>
-          <div className="text-2xl font-bold">{tfCount}</div>
+        <div className="p-5 rounded-[1.75rem] bg-white border border-slate-200 shadow-sm">
+          <div className="text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">Σωστό/Λάθος</div>
+          <div className="text-4xl font-bold text-slate-900">{tfCount}</div>
         </div>
       </div>
       <button
         onClick={onStart}
-        className="w-full py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition"
+        className="w-full py-4 rounded-3xl bg-gradient-to-r from-slate-900 to-slate-700 text-white text-lg font-semibold shadow-xl shadow-slate-900/20 hover:from-slate-800 hover:to-slate-600 transition-all"
       >
         Έναρξη Κουίζ
       </button>
@@ -52,19 +58,19 @@ const QuestionSelector = ({ value, onChange, onStart }) => {
 
 const MCQQuestion = ({ question, answer, onSelect }) => {
   return (
-    <div className="space-y-5">
-      <div>
-        <div className="text-slate-500 mb-2">Πολλαπλής επιλογής</div>
-        <div className="text-xl font-semibold">{question.question}</div>
+    <div className="space-y-6">
+      <div className="rounded-3xl bg-slate-100 p-6 text-slate-900 shadow-sm border border-slate-200">
+        <div className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-2">Πολλαπλής επιλογής</div>
+        <div className="text-2xl font-semibold leading-9">{question.question}</div>
       </div>
-      <div className="grid gap-3">
+      <div className="grid gap-4">
         {Object.entries(question.options).map(([key, option]) => (
           <button
             key={key}
             onClick={() => onSelect(key)}
-            className={`w-full text-left rounded-2xl border px-4 py-4 transition ${answer === key ? 'border-slate-900 bg-slate-100' : 'border-slate-200 bg-white hover:border-slate-900'}`}
+            className={`w-full text-left rounded-3xl border px-5 py-5 transition duration-200 ${answer === key ? 'border-slate-900 bg-slate-100 shadow-sm' : 'border-slate-200 bg-white hover:border-slate-900 hover:bg-slate-50'}`}
           >
-            <div className="font-semibold capitalise">{key.toUpperCase()}. {option}</div>
+            <div className="font-semibold text-slate-900">{key.toUpperCase()}. {option}</div>
           </button>
         ))}
       </div>
@@ -74,17 +80,17 @@ const MCQQuestion = ({ question, answer, onSelect }) => {
 
 const TrueFalseQuestion = ({ question, answer, onSelect }) => {
   return (
-    <div className="space-y-5">
-      <div>
-        <div className="text-slate-500 mb-2">Σωστό ή Λάθος</div>
-        <div className="text-xl font-semibold">{question.question}</div>
+    <div className="space-y-6">
+      <div className="rounded-3xl bg-slate-100 p-6 text-slate-900 shadow-sm border border-slate-200">
+        <div className="text-sm uppercase tracking-[0.25em] text-slate-500 mb-2">Σωστό ή Λάθος</div>
+        <div className="text-2xl font-semibold leading-9">{question.question}</div>
       </div>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         {['true', 'false'].map((value) => (
           <button
             key={value}
             onClick={() => onSelect(value === 'true')}
-            className={`py-4 rounded-2xl text-sm font-semibold transition ${answer === (value === 'true') ? 'bg-slate-900 text-white' : 'bg-white border border-slate-200 hover:border-slate-900'}`}
+            className={`py-5 rounded-3xl text-base font-semibold transition duration-200 ${answer === (value === 'true') ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/20' : 'bg-white border border-slate-200 text-slate-800 hover:border-slate-900 hover:bg-slate-50'}`}
           >
             {value === 'true' ? 'Σωστό' : 'Λάθος'}
           </button>
@@ -99,19 +105,31 @@ const ResultsPage = ({ answers, questions, time, onRetry }) => {
   const correctCount = answers.length - incorrect.length
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-3xl shadow-lg">
-      <div className="mb-6">
-        <h2 className="text-3xl font-semibold mb-2">Αποτέλεσμα</h2>
-        <p className="text-slate-600">Σωστές απαντήσεις: {correctCount} / {answers.length}</p>
-        <p className="text-slate-600">Χρόνος: {formatTime(time)}</p>
+    <div className="max-w-4xl mx-auto p-8 bg-white/95 rounded-[2rem] border border-slate-200 shadow-2xl shadow-slate-200/40">
+      <div className="mb-8 grid gap-4 sm:grid-cols-3">
+        <div className="rounded-3xl bg-slate-900 text-white p-5 shadow-lg shadow-slate-900/10">
+          <div className="text-sm uppercase tracking-[0.2em] text-sky-300 mb-2">Αποτέλεσμα</div>
+          <div className="text-3xl font-semibold">{correctCount}/{answers.length}</div>
+          <p className="mt-2 text-sm text-slate-300">Σωστές απαντήσεις</p>
+        </div>
+        <div className="rounded-3xl bg-slate-50 p-5 border border-slate-200">
+          <div className="text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">Λάθη</div>
+          <div className="text-3xl font-semibold text-rose-600">{incorrect.length}</div>
+          <p className="mt-2 text-sm text-slate-500">Λανθασμένες ερωτήσεις</p>
+        </div>
+        <div className="rounded-3xl bg-slate-50 p-5 border border-slate-200">
+          <div className="text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">Χρόνος</div>
+          <div className="text-3xl font-semibold text-slate-900">{formatTime(time)}</div>
+          <p className="mt-2 text-sm text-slate-500">Συνολικά</p>
+        </div>
       </div>
       {incorrect.length === 0 ? (
-        <div className="p-6 bg-emerald-100 rounded-3xl border border-emerald-200">
-          <p className="text-emerald-900 font-semibold">Συγχαρητήρια! Απαντήσατε σωστά όλες τις ερωτήσεις.</p>
+        <div className="p-8 bg-emerald-100 rounded-[1.75rem] border border-emerald-200 shadow-sm">
+          <p className="text-emerald-900 font-semibold text-lg">Συγχαρητήρια! Απαντήσατε σωστά όλες τις ερωτήσεις.</p>
         </div>
       ) : (
         <div className="space-y-5">
-          <div className="text-slate-700 font-semibold mb-3">Ερωτήσεις που απαντήσατε λάθος</div>
+          <div className="text-slate-700 font-semibold text-lg">Ερωτήσεις που απαντήσατε λάθος</div>
           {incorrect.map((entry, index) => {
             const question = questions.find((item) => item.id === entry.questionId)
             const userAnswer = question.type === 'mcq'
@@ -122,10 +140,18 @@ const ResultsPage = ({ answers, questions, time, onRetry }) => {
               : question.correctAnswer === true ? 'Σωστό' : 'Λάθος'
 
             return (
-              <div key={entry.questionId} className="p-5 rounded-3xl border border-rose-200 bg-rose-50">
-                <div className="text-slate-800 font-semibold">{index + 1}. {question.question}</div>
-                <div className="mt-3 text-sm text-slate-600">Η απάντησή σας: <span className="font-semibold text-rose-700">{userAnswer}</span></div>
-                <div className="mt-1 text-sm text-slate-600">Σωστή απάντηση: <span className="font-semibold text-slate-900">{correctAnswer}</span></div>
+              <div key={entry.questionId} className="p-6 rounded-[1.75rem] border border-rose-200 bg-rose-50 shadow-sm">
+                <div className="text-slate-800 font-semibold mb-3">{index + 1}. {question.question}</div>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  <div className="rounded-2xl bg-white p-4 border border-slate-200">
+                    <div className="text-xs uppercase tracking-[0.2em] text-slate-500 mb-2">Η απάντησή σας</div>
+                    <div className="font-semibold text-rose-700">{userAnswer}</div>
+                  </div>
+                  <div className="rounded-2xl bg-white p-4 border border-slate-200">
+                    <div className="text-xs uppercase tracking-[0.2em] text-slate-500 mb-2">Σωστή απάντηση</div>
+                    <div className="font-semibold text-slate-900">{correctAnswer}</div>
+                  </div>
+                </div>
               </div>
             )
           })}
@@ -133,7 +159,7 @@ const ResultsPage = ({ answers, questions, time, onRetry }) => {
       )}
       <button
         onClick={onRetry}
-        className="mt-8 w-full py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition"
+        className="mt-10 w-full py-4 rounded-3xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition"
       >
         Δοκιμάστε ξανά
       </button>
@@ -227,8 +253,11 @@ function App() {
   }, [currentIndex, quizQuestions.length])
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10 px-4">
-      <div className="max-w-5xl mx-auto">
+    <div className="relative min-h-screen bg-slate-50 py-10 px-4 overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-sky-200/60 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 top-24 h-72 w-72 rounded-full bg-cyan-200/30 blur-3xl" />
+      <div className="pointer-events-none absolute right-0 top-40 h-72 w-72 rounded-full bg-violet-200/25 blur-3xl" />
+      <div className="max-w-5xl mx-auto relative">
         {phase === 'setup' && (
           <QuestionSelector
             value={questionCount}
@@ -238,8 +267,8 @@ function App() {
         )}
 
         {phase === 'quiz' && currentQuestion && (
-          <div className="max-w-4xl mx-auto p-6 bg-white rounded-3xl shadow-lg">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div className="max-w-4xl mx-auto p-8 bg-white rounded-[2rem] shadow-2xl shadow-slate-200/60 border border-slate-200">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
               <div>
                 <div className="text-slate-500">Πρόοδος</div>
                 <div className="text-2xl font-semibold">{progressLabel}</div>
@@ -248,6 +277,12 @@ function App() {
                 <div className="text-slate-500">Χρόνος</div>
                 <div className="text-2xl font-semibold">{formatTime(time)}</div>
               </div>
+            </div>
+            <div className="h-3 mb-7 overflow-hidden rounded-full bg-slate-200">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-sky-500 via-indigo-500 to-slate-900 transition-all"
+                style={{ width: `${((currentIndex + 1) / quizQuestions.length) * 100}%` }}
+              />
             </div>
             <div className="space-y-6">
               {currentQuestion.type === 'mcq' ? (
@@ -267,7 +302,7 @@ function App() {
             <button
               onClick={handleNext}
               disabled={currentAnswer === null}
-              className="mt-8 w-full py-3 rounded-2xl bg-slate-900 text-white font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800"
+              className="mt-8 w-full py-4 rounded-3xl bg-gradient-to-r from-slate-900 to-slate-700 text-white font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed hover:from-slate-800 hover:to-slate-600"
             >
               {currentIndex + 1 === quizQuestions.length ? 'Ολοκλήρωση' : 'Επόμενη ερώτηση'}
             </button>
