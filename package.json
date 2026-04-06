@@ -1,0 +1,36 @@
+{
+  "name": "hrda-practisequestions",
+  "version": "1.0.0",
+  "description": "MCQ/TF - Practise Questions for HRDA's examination",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steliosk98/HRDA-PractiseQuestions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steliosk98/HRDA-PractiseQuestions/issues"
+  },
+  "homepage": "https://steliosk98.github.io/HRDA-PractiseQuestions",
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.4.27",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.4",
+    "vite": "^8.0.5"
+  }
+}
