@@ -2,8 +2,6 @@
 
 An interactive React-based quiz application for practicing HRDA (Human Resource Development Authority) exam questions. Features a 50/50 split between multiple-choice and true/false questions, real-time timer, and detailed results with incorrect answer feedback.
 
-**Live Demo:** [https://steliosk98.github.io/HRDA-PractiseQuestions/](https://steliosk98.github.io/HRDA-PractiseQuestions/)
-
 ---
 
 ## Features ✨
@@ -24,7 +22,6 @@ An interactive React-based quiz application for practicing HRDA (Human Resource 
 - **React 19** - UI framework
 - **Vite** - Fast build tool and dev server
 - **Tailwind CSS 3** - Utility-first CSS framework
-- **gh-pages** - Automated GitHub Pages deployment
 
 ---
 
@@ -61,53 +58,9 @@ An interactive React-based quiz application for practicing HRDA (Human Resource 
 
 ---
 
-## GitHub Pages Deployment 📡
-
-### Automatic Deployment (Recommended)
-
-The project includes a GitHub Actions workflow that automatically deploys to GitHub Pages on every push to `main`.
-
-**Setup (one-time):**
-
-1. Ensure your repository is public (or upgrade to GitHub Pro for private repos)
-2. Go to **Settings → Pages** on your GitHub repository
-3. Select **Deploy from a branch** → Branch: `gh-pages` → Save
-
-4. Push your changes to `main`:
-   ```bash
-   git add .
-   git commit -m "Deploy to GitHub Pages"
-   git push origin main
-   ```
-
-5. The GitHub Actions workflow (`.github/workflows/deploy.yml`) will automatically:
-   - Install dependencies
-   - Build the app
-   - Deploy to the `gh-pages` branch
-
-6. Your app will be live at: `https://steliosk98.github.io/HRDA-PractiseQuestions/`
-
-### Manual Deployment
-
-If you prefer to deploy manually:
-
-1. **Build the project:**
-   ```bash
-   npm run build
-   ```
-
-2. **Deploy to GitHub Pages:**
-   ```bash
-   npm run deploy
-   ```
-
-   This command automatically pushes the contents of the `dist/` folder to the `gh-pages` branch.
-
----
-
 ## Usage 📖
 
-1. **Open the quiz**: Navigate to the deployed GitHub Pages link
+1. **Open the quiz**: Start the development server with `npm run dev` or deploy the app and open it in your browser
 2. **Select question count**: Use the slider to choose how many questions (2-100)
 3. **View the split**: The app automatically shows how many MCQ and True/False questions you'll get
 4. **Start the quiz**: Click "Έναρξη Κουίζ" (Start Quiz)
@@ -132,9 +85,6 @@ HRDA-PractiseQuestions/
 │   ├── App.jsx               # Main component with quiz logic
 │   ├── main.jsx              # React entry point
 │   └── index.css             # Tailwind + custom styles
-├── .github/
-│   └── workflows/
-│       └── deploy.yml        # GitHub Actions deployment workflow
 ├── package.json              # Dependencies and build scripts
 ├── vite.config.js            # Vite configuration
 ├── tailwind.config.cjs       # Tailwind CSS configuration
@@ -148,7 +98,6 @@ HRDA-PractiseQuestions/
 - `npm run dev` - Start Vite development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build locally
-- `npm run deploy` - Deploy to GitHub Pages
 
 ---
 
@@ -198,11 +147,6 @@ HRDA-PractiseQuestions/
 - Check that `mcq.json` and `truefalse.json` are in the `public/` folder
 - Verify JSON syntax is valid
 - Clear browser cache and refresh
-
-**Deployment not updating?**
-- Wait 1-2 minutes for GitHub Actions to complete
-- Check the workflow status in **Actions** tab on GitHub
-- Ensure changes were pushed to `main` branch
 
 **Build fails locally?**
 - Run `npm install` to ensure all dependencies are installed
