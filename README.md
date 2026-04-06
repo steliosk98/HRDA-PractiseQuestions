@@ -4,6 +4,8 @@ Live site: https://steliosk98.github.io/HRDA-PractiseQuestions/
 
 An interactive React quiz app for practicing HRDA examination questions.
 
+It includes both quiz mode and flash cards mode for open-ended question review.
+
 ## Tech Stack
 
 - React 19
@@ -39,6 +41,7 @@ The workflow builds the Vite app, uploads the `dist/` artifact, and deploys it w
 
 - `public/mcq.json`: multiple choice questions
 - `public/truefalse.json`: true/false questions
+- `public/openended.json`: flash card questions and answers
 
 ## Troubleshooting
 
