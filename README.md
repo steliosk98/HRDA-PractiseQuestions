@@ -2,6 +2,8 @@
 
 An interactive React-based quiz application for practicing HRDA (Human Resource Development Authority) exam questions. Features a 50/50 split between multiple-choice and true/false questions, real-time timer, and detailed results with incorrect answer feedback.
 
+**🚀 Live Demo:** [https://steliosk98.github.io/HRDA-PractiseQuestions/](https://steliosk98.github.io/HRDA-PractiseQuestions/)
+
 ---
 
 ## Features ✨
