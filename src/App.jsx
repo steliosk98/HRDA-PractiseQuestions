@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 
+const resolvePublicAsset = (path) => `${import.meta.env.BASE_URL}${path}`
+
 const formatTime = (seconds) => {
   const mins = String(Math.floor(seconds / 60)).padStart(2, '0')
   const secs = String(seconds % 60).padStart(2, '0')
@@ -181,8 +183,8 @@ function App() {
   useEffect(() => {
     const loadData = async () => {
       const [mcqResp, tfResp] = await Promise.all([
-        fetch('/mcq.json'),
-        fetch('/truefalse.json'),
+        fetch(resolvePublicAsset('mcq.json')),
+        fetch(resolvePublicAsset('truefalse.json')),
       ])
       const [mcqJson, tfJson] = await Promise.all([mcqResp.json(), tfResp.json()])
       setMcqData(mcqJson)
